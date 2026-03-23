@@ -1,5 +1,6 @@
-import { StyleSheet, Text, Image, View, ScrollView } from "react-native";
+import { StyleSheet, Text, Image, View, ScrollView, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useRouter } from "expo-router";
 
 const BookCard = ({ title, author, cover }) => (
   <View style={styles.bookCard}>
@@ -14,26 +15,36 @@ const starEmpty = require("../images/icon_star_empty.png");
 
 // --- 子元件：書本卡片 ---
 const BookCardNewest = ({ title, author, cover, rating }) => {
+  const router = useRouter();
   const starArray = Array.from({ length: 5 }, (_, index) => index < rating);
 
   return (
-    <View style={styles.bookCard}>
+    <TouchableOpacity style={styles.bookCard} onPress={() => router.push({
+      pathname: "/detail",
+      params: {
+        title: title,
+        author: author,
+        rating: rating
+      }
+    })}>
       <Image source={cover} style={styles.bookCover} />
 
       {/* 星星評分區 */}
-      <View style={styles.ratingContainer}>
-        {starArray.map((isFilled, index) => (
-          <Image
-            key={index}
-            style={styles.starIcon}
-            source={isFilled ? starFilled : starEmpty}
-          />
-        ))}
-      </View>
+      < View style={styles.ratingContainer} >
+        {
+          starArray.map((isFilled, index) => (
+            <Image
+              key={index}
+              style={styles.starIcon}
+              source={isFilled ? starFilled : starEmpty}
+            />
+          ))
+        }
+      </View >
 
       <Text style={styles.bookTitle} numberOfLines={1}>{title}</Text>
       <Text style={styles.bookAuthor}>{author}</Text>
-    </View>
+    </TouchableOpacity >
   );
 };
 
@@ -81,7 +92,7 @@ export default function Page() {
             />
             <BookCardNewest
               title="Stitched Up"
-              author="Tansy E. Hoskins "
+              author="Tansy E. Hoskins"
               rating={3}
               cover={require("../images/books/book6.png")}
             />
