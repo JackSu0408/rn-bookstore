@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: "row",
         justifyContent: "space-between",
+        paddingTop: 8,
         paddingHorizontal: 20,
         paddingVertical: 10,
     },
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
     },
     ratingContainer: {
         flexDirection: "row",
-        gap: 4, // 關鍵：讓星星之間有一點距離
+        gap: 4, //讓星星之間有一點距離
         marginRight: 10,
     },
     ratingRow: {

@@ -56,7 +56,7 @@ export default function Page() {
         <Image style={styles.searchIcon} source={require("../images/icon_search.png")} />
       </View>
 
-      <ScrollView style={styles.content}>
+      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         <View style={styles.section}>
           <Text style={styles.title}>Popular Books</Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
